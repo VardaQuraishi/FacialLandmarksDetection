@@ -17,14 +17,14 @@ while True:
     results = faceMesh.process(imgRGB) #Pass the image and draw the detected landmarks on the faces
     if results.multi_face_landmarks:
         for faceLms in results.multi_face_landmarks:
-            mpDraw.draw_landmarks(img, faceLms, mpFaceMesh.FACE_CONNECTIONS, drawSpec, drawSpec)
-            for id, lm in enumerate(faceLms.lanmark):
+            mpDraw.draw_landmarks(img, faceLms, mpFaceMesh.FACEMESH_CONTOURS, drawSpec, drawSpec)
+            for id, lm in enumerate(faceLms.landmark):
                 print(lm)
                 ih, iw, ic = img.shape
                 x, y = int(lm.x*iw), int(lm.y*ih)
                 #The 468 facial landmarks
-                cv2.putText(img, str(id), (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.3, (0, 255, 0), 1)
-                print(id, x, y)
+                # cv2.putText(img, str(id), (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.3, (0, 255, 0), 1)
+                # print(id, x, y)
 
         cTime = time.time()
         fps = 1/(cTime - pTime)
