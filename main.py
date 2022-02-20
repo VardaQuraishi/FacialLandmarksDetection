@@ -1,7 +1,7 @@
 import cv2
 import time
 import numpy as np
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0) #open webcam device number 0 or 1
 if not cap.isOpened():
     print("Cannot open camera")
     exit()
@@ -30,13 +30,14 @@ if not cap.isOpened():
 # # When everything done, release the capture
 # cap.release()
 # cv2.destroyAllWindows()
-pTime = 0
+pTime = 0 #past Time
 while True:
     success, img = cap.read()
-    imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) #to use both pillow and opencv functions for image processing
     cTime = time.time()
-    fps = 1/(cTime - pTime)
+    fps = 1/(cTime - pTime) #fps 170
     pTime = cTime
-    cv2.putText(img, f'FPS:{int(fps)}', (20,70), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2)
-    cv2.imshow("Test", img)
-    cv2.waitKey(1)
+    #draw text string on any image denoting the font type, font scale, BGR, returns an image
+    cv2.putText(img, f'FPS:{int(fps)}', (20,70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,0),2)
+    cv2.imshow("Test", img) #display image in the window
+    cv2.waitKey(1) #wait for 1 milli second until a key is pressed on the keyboard
